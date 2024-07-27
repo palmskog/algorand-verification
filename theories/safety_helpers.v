@@ -1623,17 +1623,18 @@ Proof.
     by rewrite not_fnd // -[uid \in _]/(uid \in domf _) -updf_domf.
   + (* step_deliver_msg UTransitionMsg *)
   rewrite fnd_set.
-  destruct (@eqP (Finite.choiceType UserId) uid uid0);[|done].
-  subst uid0;rewrite (in_fnd key_ustate).
+  case: ifP => //; move/eqP ->.
+  rewrite (in_fnd key_ustate).
   by move/negP: H0.
   + (* step_internal UTransitionInternal *)
   rewrite fnd_set.
-  destruct (@eqP (Finite.choiceType UserId) uid uid0);[|done].
-  subst uid0;rewrite (in_fnd ustate_key).
-  apply/contraNN => H1. by apply utransition_internal_preserves_corrupt in H0.
+  case: ifP => //; move/eqP ->.
+  rewrite (in_fnd ustate_key).
+  apply/contraNN => H1.
+  by apply utransition_internal_preserves_corrupt in H0.
   + (* step_corrupt_user *)
   rewrite fnd_set.
-  by destruct (@eqP (Finite.choiceType UserId) uid uid0).
+  by case: ifP.
 Qed.
 
 (** [user_honest] at the last state implies [user_honest] in all states in the path. *)

@@ -40,39 +40,49 @@ license:
   file: LICENSE.md
 
 supported_coq_versions:
-  text: '8.14 or later'
-  opam: '{>= "8.14"}'
+  text: '8.16 or later'
+  opam: '{>= "8.16"}'
 
 tested_coq_opam_versions:
-- version: '1.15.0-coq-8.16'
+- version: '2.2.0-coq-8.19'
   repo: 'mathcomp/mathcomp'
-- version: '1.15.0-coq-8.15'
+- version: '2.2.0-coq-8.18'
   repo: 'mathcomp/mathcomp'
-- version: '1.14.0-coq-8.15'
+- version: '2.1.0-coq-8.17'
   repo: 'mathcomp/mathcomp'
-- version: '1.14.0-coq-8.14'
+- version: '2.0.0-coq-8.16'
   repo: 'mathcomp/mathcomp'
 
 dependencies:
 - opam:
     name: coq-mathcomp-ssreflect
-    version: '{>= "1.14"}'
+    version: '{>= "2.0.0"}'
   description: |-
-    [MathComp ssreflect 1.14.0 or later](https://math-comp.github.io)
+    [MathComp ssreflect 2.0.0 or later](https://math-comp.github.io)
 - opam:
     name: coq-mathcomp-algebra
   description: |-
     [MathComp algebra](https://math-comp.github.io)
 - opam:
-    name: coq-mathcomp-finmap
-    version: '{>= "1.5.1"}'
+    name: coq-hierarchy-builder
+    version: '{>= "1.4.0"}'
   description: |-
-    [MathComp finmap 1.5.1 or later](https://github.com/math-comp/finmap)
+    [Hierarchy Builder 1.4.0 or later](https://github.com/math-comp/hierarchy-builder)
+- opam:
+    name: coq-mathcomp-finmap
+    version: '{>= "2.0.0"}'
+  description: |-
+    [MathComp finmap 2.0.0 or later](https://github.com/math-comp/finmap)
+- opam:
+    name: coq-mathcomp-classical
+    version: '{>= "1.1.0"}'
+  description: |-
+    [MathComp classical 1.1.0 or later](https://github.com/math-comp/analysis)
 - opam:
     name: coq-mathcomp-analysis
-    version: '{>= "0.5.0"}'
+    version: '{>= "1.1.0"}'
   description: |-
-    [MathComp analysis 0.5.0 or later](https://github.com/math-comp/analysis)
+    [MathComp analysis 1.1.0 or later](https://github.com/math-comp/analysis)
 - opam:
     name: coq-mathcomp-zify
   description: |-
@@ -100,9 +110,9 @@ build: |-
   [opam](http://opam.ocaml.org/doc/Install.html), for example:
   ```shell
   opam repo add coq-released https://coq.inria.fr/opam/released
-  opam install coq.8.16.0 coq-mathcomp-ssreflect.1.15.0 \
-   coq-mathcomp-algebra coq-mathcomp-finmap.1.5.2 \
-   coq-mathcomp-analysis.0.5.4 coq-mathcomp-zify coq-record-update
+  opam install coq.8.19.1 coq-mathcomp-ssreflect.2.2.0 \
+   coq-mathcomp-algebra coq-mathcomp-finmap.2.1.0 \
+   coq-mathcomp-analysis.1.2.0 coq-mathcomp-zify coq-record-update
   ```
 
   Then, run `make` in the project root directory. This will check all the definitions and proofs.

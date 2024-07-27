@@ -2,8 +2,8 @@
 
 [![Docker CI][docker-action-shield]][docker-action-link]
 
-[docker-action-shield]: https://github.com/runtimeverification/algorand-verification/workflows/Docker%20CI/badge.svg?branch=master
-[docker-action-link]: https://github.com/runtimeverification/algorand-verification/actions?query=workflow:"Docker%20CI"
+[docker-action-shield]: https://github.com/runtimeverification/algorand-verification/actions/workflows/docker-action.yml/badge.svg?branch=master
+[docker-action-link]: https://github.com/runtimeverification/algorand-verification/actions/workflows/docker-action.yml
 
 
 
@@ -17,12 +17,14 @@ a formal proof of safety for the transition system.
 ## Meta
 
 - License: [University of Illinois/NCSA Open Source License](LICENSE.md)
-- Compatible Coq versions: 8.14 or later
+- Compatible Coq versions: 8.16 or later
 - Additional dependencies:
-  - [MathComp ssreflect 1.14.0 or later](https://math-comp.github.io)
+  - [MathComp ssreflect 2.0.0 or later](https://math-comp.github.io)
   - [MathComp algebra](https://math-comp.github.io)
-  - [MathComp finmap 1.5.1 or later](https://github.com/math-comp/finmap)
-  - [MathComp analysis 0.5.0 or later](https://github.com/math-comp/analysis)
+  - [Hierarchy Builder 1.4.0 or later](https://github.com/math-comp/hierarchy-builder)
+  - [MathComp finmap 2.0.0 or later](https://github.com/math-comp/finmap)
+  - [MathComp classical 1.1.0 or later](https://github.com/math-comp/analysis)
+  - [MathComp analysis 1.1.0 or later](https://github.com/math-comp/analysis)
   - [Mczify](https://github.com/math-comp/mczify)
   - [Coq record update](https://github.com/tchajed/coq-record-update)
 - Coq namespace: `Algorand`
@@ -35,9 +37,9 @@ We recommend installing the dependencies of the project via
 [opam](http://opam.ocaml.org/doc/Install.html), for example:
 ```shell
 opam repo add coq-released https://coq.inria.fr/opam/released
-opam install coq.8.16.0 coq-mathcomp-ssreflect.1.15.0 \
- coq-mathcomp-algebra coq-mathcomp-finmap.1.5.2 \
- coq-mathcomp-analysis.0.5.4 coq-mathcomp-zify coq-record-update
+opam install coq.8.19.1 coq-mathcomp-ssreflect.2.2.0 \
+ coq-mathcomp-algebra coq-mathcomp-finmap.2.1.0 \
+ coq-mathcomp-analysis.1.2.0 coq-mathcomp-zify coq-record-update
 ```
 
 Then, run `make` in the project root directory. This will check all the definitions and proofs.

@@ -1,3 +1,4 @@
+From HB Require Import structures.
 From mathcomp Require Import all_ssreflect.
 From mathcomp Require Import finmap multiset.
 From Coq Require Import Reals Relation_Definitions Relation_Operators.
@@ -88,10 +89,9 @@ Lemma pcancel_MessageType_7 : pcancel mtype2o o2mtype.
 Proof. by case;rewrite /o2mtype /= inordK. Qed.
 
 (** Register canonical structures on [MessageType]; needed for using it in [fset]s, [mset]s, etc. *)
-Canonical messageType_eqType     := EqType     MessageType (Equality.Mixin MessageType_eqP).
-Canonical messageType_choiceType := ChoiceType MessageType (PcanChoiceMixin pcancel_MessageType_7).
-Canonical messageType_countType  := CountType  MessageType (PcanCountMixin  pcancel_MessageType_7).
-Canonical messageType_finType    := FinType    MessageType (PcanFinMixin    pcancel_MessageType_7).
+HB.instance Definition _ := hasDecEq.Build MessageType MessageType_eqP.
+HB.instance Definition _ : isCountable MessageType := PCanIsCountable pcancel_MessageType_7.
+HB.instance Definition _ : isFinite MessageType := PCanIsFinite pcancel_MessageType_7.
 
 (** ** Extended value type *)
 
@@ -124,8 +124,7 @@ Lemma cancelExVal : pcancel codeExVal (fun x => Some (decodeExVal x)).
 Proof. by case. Qed.
 
 (** Register canonical structures on [ExValue]; needed for using it in [fset]s, [mset]s, etc. *)
-Canonical exValue_eqType := EqType ExValue (PcanEqMixin cancelExVal).
-Canonical exValue_choiceType := ChoiceType ExValue (PcanChoiceMixin cancelExVal).
+HB.instance Definition _ := Choice.copy ExValue (pcan_type cancelExVal).
 
 (** ** Messages *)
 
@@ -155,8 +154,7 @@ Lemma cancelMsg : pcancel codeMsg (fun x => Some (decodeMsg x)).
 Proof. by case. Qed.
 
 (** Register canonical structures on [Msg]; needed for using it in [fset]s, [mset]s, etc. *)
-Canonical Msg_eqType := EqType Msg (PcanEqMixin cancelMsg).
-Canonical Msg_choiceType := ChoiceType Msg (PcanChoiceMixin cancelMsg).
+HB.instance Definition _ := Choice.copy Msg (pcan_type cancelMsg).
 
 (** Messages are grouped by the target user, and are paired with a
 delivery deadline. In the absence of a partition, messages must
@@ -245,8 +243,7 @@ mkUState corrupt round period step timer deadline
 Lemma cancelUState : pcancel codeUState (fun x => Some (decodeUState x)).
 Proof. by case. Qed.
 
-Canonical UState_eqType := EqType UState (PcanEqMixin cancelUState).
-Canonical UState_choiceType := ChoiceType UState (PcanChoiceMixin cancelUState).
+HB.instance Definition _ := Choice.copy UState (pcan_type cancelUState).
 
 (** ** Updating user state *)
 
@@ -321,8 +318,7 @@ mkGState now network_partition users msg_in_transit msg_history.
 Lemma cancelGState : pcancel codeGState (fun x => Some (decodeGState x)).
 Proof. by case. Qed.
 
-Canonical GState_eqType := EqType GState (PcanEqMixin cancelGState).
-Canonical GState_choiceType := ChoiceType GState (PcanChoiceMixin cancelGState).
+HB.instance Definition _ := Choice.copy GState (pcan_type cancelGState).
 
 (** Flipping the network partition flag. *)
 Definition flip_partition_flag (g : GState) : GState :=

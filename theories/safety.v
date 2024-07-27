@@ -2273,7 +2273,7 @@ Proof.
     move:(certvote_postcondition H_send' (in_fnd (user_sent_in_post H_send'))) =>
     [H_certvals' [[b' [H_blocks' H_block_valid']] H_g2'_step]].
     unfold saw_v.
-    apply/(@hasP GState_eqType _ trace).
+    apply/(@hasP _ _ trace).
     exists g2'.
     pose proof (step_in_path_onth_post H_step').
     eapply onth_in; eassumption.
